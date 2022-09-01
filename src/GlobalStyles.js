@@ -20,10 +20,6 @@ export const GlobalStyle = () => {
         a {
           text-decoration: none;
         }
-
-        body {
-          background-color: gray;
-        }
       `}
     />
   );
