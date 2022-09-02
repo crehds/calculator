@@ -1,6 +1,6 @@
 import { Icon } from './Icon';
-import { back } from './iconsPaths/back';
-import { cart } from './iconsPaths/cart';
+import { back } from '../iconsPaths/back';
+import { cart } from '../iconsPaths/cart';
 
 const icons = { back, cart };
 export default {
