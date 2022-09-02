@@ -11,6 +11,7 @@ export const GlobalStyle = () => {
         }
         html {
           font-size: 62.5%;
+          font-family: 'Roboto';
         }
 
         ul {
