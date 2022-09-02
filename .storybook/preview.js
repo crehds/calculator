@@ -16,4 +16,5 @@ export const parameters = {
     darkClass: 'lights-out',
     lightClass: 'lights-on',
   },
+  layout: 'centered',
 };
