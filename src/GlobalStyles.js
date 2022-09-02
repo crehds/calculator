@@ -7,7 +7,7 @@ export const GlobalStyle = () => {
         * {
           box-sizing: border-box;
           padding: 0;
-          border: 0;
+          margin: 0;
         }
         html {
           font-size: 62.5%;
