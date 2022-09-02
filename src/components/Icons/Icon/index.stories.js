@@ -1,4 +1,4 @@
-import { Icon } from './Icon';
+import { Icon } from '.';
 import { back } from '../iconsPaths/back';
 import { cart } from '../iconsPaths/cart';
 
