@@ -1,7 +1,8 @@
 import { themes } from '@storybook/theming';
-import './reset.css';
-import './typography.css';
-import '../src/colors.css';
+import '../src/assets/reset.css';
+import '../src/assets/colors.css';
+import '../src/assets/typography.css';
+
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {

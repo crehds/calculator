@@ -1,6 +1,5 @@
-import './colors.css';
+import './assets/colors.css';
 import { Header } from './components/Calculator/components/Header';
-import { Cart } from './components/Icons/Cart';
 import { AppContainer } from './containers';
 import { GlobalStyle } from './GlobalStyles';
 
