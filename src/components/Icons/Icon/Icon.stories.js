@@ -4,7 +4,7 @@ import { cart } from '../iconsPaths/cart';
 
 const icons = { back, cart };
 export default {
-  title: 'Calculator/Icon',
+  title: 'Calculator/Icons/IconWrapper',
   component: Icon,
   argTypes: {
     color: { control: 'color' },
@@ -24,5 +24,5 @@ export default {
 
 const Template = (args) => <Icon {...args} />;
 
-export const Default = Template.bind({});
-Default.args = { children: cart };
+export const Example = Template.bind({});
+Example.args = { children: cart };
