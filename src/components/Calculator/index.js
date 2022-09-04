@@ -113,8 +113,12 @@ export const Calculator = () => {
         });
       case 'operation':
         if (waitForSecond) {
-          const num1 = parseInt(firstNum);
-          const num2 = parseInt(secondNum);
+          const num1 = firstNum.includes('.')
+            ? parseFloat(firstNum)
+            : parseInt(firstNum);
+          const num2 = secondNum.includes('.')
+            ? parseFloat(secondNum)
+            : parseInt(secondNum);
           const result = operations({ num1, operator, num2 });
           return setData({
             ...data,
@@ -133,8 +137,12 @@ export const Calculator = () => {
           displayValue: displayValue + value,
         });
       case 'execute':
-        const num1 = parseInt(firstNum);
-        const num2 = parseInt(secondNum);
+        const num1 = firstNum.includes('.')
+          ? parseFloat(firstNum)
+          : parseInt(firstNum);
+        const num2 = secondNum.includes('.')
+          ? parseFloat(secondNum)
+          : parseInt(secondNum);
         const result = operations({ num1, operator, num2 });
         setExecuteButton('check');
         return setData({
