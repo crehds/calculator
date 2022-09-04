@@ -110,7 +110,19 @@ export const Calculator = () => {
           operator: value,
           displayValue: prevState.displayValue + value,
         }));
-
+      case 'execute':
+        const { firstNum, operator, secondNum } = data;
+        const num1 = parseInt(firstNum);
+        const num2 = parseInt(secondNum);
+        const result = operations({ num1, operator, num2 });
+        setExecuteButton('check');
+        return setData({
+          displayValue: `${result}`,
+          firstNum: `${result}`,
+          secondNum: '',
+          operator: '',
+          waitForSecond: false,
+        });
       default:
         return setData((prevState) => {
           if (prevState.waitForSecond) {
