@@ -1,6 +1,5 @@
 import { Back } from '../../../Icons/Back';
 import { CalendarIcon } from '../../../Icons/CalendarIcon';
-import { Check } from '../../../Icons/Check';
 
 export const keys = [
   {
@@ -91,15 +90,6 @@ export const keys = [
       color: 'white',
     },
     children: '9',
-  },
-  {
-    props: {
-      color: 'cyan-500',
-      type: 'future',
-      column: [5, 6],
-      row: [4, 6],
-    },
-    children: <Check />,
   },
   {
     props: {

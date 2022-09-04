@@ -1,47 +1,12 @@
 import { useState } from 'react';
-import { Back } from '../Icons/Back';
-import { CalendarIcon } from '../Icons/CalendarIcon';
-import { Check } from '../Icons/Check';
-import { Equal } from '../Icons/Equal';
 import { Calendar } from './components/Calendar';
 import { Content } from './components/Content';
+import { Execute } from './components/Execute';
 import { Header } from './components/Header';
 import { Key } from './components/Key';
 import { Result } from './components/Result';
 import { keys } from './components/sctructure';
 import { CalculatorWrapper } from './styles';
-
-const executeHandler = ({ value, resultHandler }) => {
-  switch (value) {
-    case 'check':
-      return (
-        <Key
-          resultHandler={resultHandler}
-          color='cyan-500'
-          column={[5, 6]}
-          row={[4, 6]}
-          type='future'
-        >
-          <Check />
-        </Key>
-      );
-    case 'equal':
-      return (
-        <Key
-          resultHandler={resultHandler}
-          color='cyan-500'
-          column={[5, 6]}
-          row={[4, 6]}
-          type='execute'
-        >
-          <Equal />
-        </Key>
-      );
-
-    default:
-      break;
-  }
-};
 
 const operations = ({ operator, num1, num2 }) => {
   switch (operator) {
@@ -70,6 +35,7 @@ const initialState = {
 export const Calculator = () => {
   const [data, setData] = useState(initialState);
   const [executeButton, setExecuteButton] = useState('check');
+
   function resultHandler({ type, value }) {
     const { displayValue, waitForSecond, secondNum, firstNum, operator } = data;
     switch (type) {
@@ -169,6 +135,8 @@ export const Calculator = () => {
           firstNum: firstNum + temp,
           displayValue: displayValue + temp,
         });
+      case 'future':
+        return;
       default:
         return setData(() => {
           if (waitForSecond) {
@@ -198,6 +166,7 @@ export const Calculator = () => {
             {key.children}
           </Key>
         ))}
+        <Execute executeButton={executeButton} resultHandler={resultHandler} />
         <Calendar>"Thursday March, 10, 2022"</Calendar>
       </Content>
     </CalculatorWrapper>
