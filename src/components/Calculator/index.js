@@ -71,6 +71,7 @@ export const Calculator = () => {
   const [data, setData] = useState(initialState);
   const [executeButton, setExecuteButton] = useState('check');
   function resultHandler({ type, value }) {
+    const { displayValue, waitForSecond, secondNum, firstNum, operator } = data;
     switch (type) {
       case 'reset':
         return setData({
@@ -81,7 +82,6 @@ export const Calculator = () => {
           displayValue: ' ',
         });
       case 'back':
-        const { displayValue, waitForSecond, secondNum: n2 } = data;
         if (displayValue === ' ') return;
 
         const strToDelete = displayValue.slice(-1);
@@ -97,7 +97,7 @@ export const Calculator = () => {
           } else {
             return setData({
               ...data,
-              secondNum: n2.slice(0, -1),
+              secondNum: secondNum.slice(0, -1),
               displayValue: displayValue.slice(0, -1),
             });
           }
@@ -108,8 +108,7 @@ export const Calculator = () => {
           displayValue: displayValue.slice(0, -1),
         });
       case 'operation':
-        if (data.waitForSecond) {
-          const { firstNum, operator, secondNum } = data;
+        if (waitForSecond) {
           const num1 = parseInt(firstNum);
           const num2 = parseInt(secondNum);
           const result = operations({ num1, operator, num2 });
@@ -123,14 +122,13 @@ export const Calculator = () => {
         }
         setExecuteButton('equal');
 
-        return setData((prevState) => ({
-          ...prevState,
+        return setData({
+          ...data,
           waitForSecond: true,
           operator: value,
-          displayValue: prevState.displayValue + value,
-        }));
+          displayValue: displayValue + value,
+        });
       case 'execute':
-        const { firstNum, operator, secondNum } = data;
         const num1 = parseInt(firstNum);
         const num2 = parseInt(secondNum);
         const result = operations({ num1, operator, num2 });
@@ -143,18 +141,18 @@ export const Calculator = () => {
           waitForSecond: false,
         });
       default:
-        return setData((prevState) => {
-          if (prevState.waitForSecond) {
+        return setData(() => {
+          if (waitForSecond) {
             return {
-              ...prevState,
-              displayValue: prevState.displayValue + value,
-              secondNum: prevState.secondNum + value,
+              ...data,
+              displayValue: displayValue + value,
+              secondNum: secondNum + value,
             };
           } else {
             return {
-              ...prevState,
-              displayValue: prevState.displayValue + value,
-              firstNum: prevState.firstNum + value,
+              ...data,
+              displayValue: displayValue + value,
+              firstNum: firstNum + value,
             };
           }
         });
@@ -218,7 +216,7 @@ export const Calculator = () => {
         <Key resultHandler={resultHandler} color='white'>
           0
         </Key>
-        <Key resultHandler={resultHandler} color='white'>
+        <Key resultHandler={resultHandler} color='white' type='decimal'>
           .
         </Key>
         <Calendar>"Thursday March, 10, 2022"</Calendar>
