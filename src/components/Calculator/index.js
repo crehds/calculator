@@ -81,12 +81,31 @@ export const Calculator = () => {
           displayValue: ' ',
         });
       case 'back':
-        if (data.displayValue === ' ') return;
-        if (data.displayValue.length === 1) return setData(' ');
+        const { displayValue, waitForSecond, secondNum: n2 } = data;
+        if (displayValue === ' ') return;
 
+        const strToDelete = displayValue.slice(-1);
+
+        if (waitForSecond) {
+          if ('x+-÷'.includes(strToDelete)) {
+            return setData({
+              ...data,
+              waitForSecond: false,
+              operator: '',
+              displayValue: displayValue.slice(0, -1),
+            });
+          } else {
+            return setData({
+              ...data,
+              secondNum: n2.slice(0, -1),
+              displayValue: displayValue.slice(0, -1),
+            });
+          }
+        }
         return setData({
           ...data,
-          displayValue: data.displayValue.slice(0, -1),
+          firstNum: displayValue.slice(0, -1),
+          displayValue: displayValue.slice(0, -1),
         });
       case 'operation':
         if (data.waitForSecond) {
