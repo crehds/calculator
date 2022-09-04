@@ -8,6 +8,7 @@ import { Content } from './components/Content';
 import { Header } from './components/Header';
 import { Key } from './components/Key';
 import { Result } from './components/Result';
+import { keys } from './components/sctructure';
 import { CalculatorWrapper } from './styles';
 
 const executeHandler = ({ value, resultHandler }) => {
@@ -15,7 +16,6 @@ const executeHandler = ({ value, resultHandler }) => {
     case 'check':
       return (
         <Key
-          id='calculator-check'
           resultHandler={resultHandler}
           color='cyan-500'
           column={[5, 6]}
@@ -28,7 +28,6 @@ const executeHandler = ({ value, resultHandler }) => {
     case 'equal':
       return (
         <Key
-          id='calculator-check'
           resultHandler={resultHandler}
           color='cyan-500'
           column={[5, 6]}
@@ -194,61 +193,11 @@ export const Calculator = () => {
       <Header paragraph={'Add to'} title={'Groceries'} />
       <Content>
         <Result>{data.displayValue}</Result>
-        <Key resultHandler={resultHandler} color='gray-100' type='operation'>
-          ÷
-        </Key>
-        <Key resultHandler={resultHandler} color='white'>
-          1
-        </Key>
-        <Key resultHandler={resultHandler} color='white'>
-          2
-        </Key>
-        <Key resultHandler={resultHandler} color='white'>
-          3
-        </Key>
-        <Key resultHandler={resultHandler} color='white' type='back'>
-          <Back />
-        </Key>
-        <Key resultHandler={resultHandler} color='gray-100' type='operation'>
-          x
-        </Key>
-        <Key resultHandler={resultHandler} color='white'>
-          4
-        </Key>
-        <Key resultHandler={resultHandler} color='white'>
-          5
-        </Key>
-        <Key resultHandler={resultHandler} color='white'>
-          6
-        </Key>
-        <Key resultHandler={resultHandler} color='white' type='reset'>
-          c
-        </Key>
-        <Key resultHandler={resultHandler} color='gray-100' type='operation'>
-          -
-        </Key>
-        <Key resultHandler={resultHandler} color='white'>
-          7
-        </Key>
-        <Key resultHandler={resultHandler} color='white'>
-          8
-        </Key>
-        <Key resultHandler={resultHandler} color='white'>
-          9
-        </Key>
-        {executeHandler({ value: executeButton, resultHandler })}
-        <Key resultHandler={resultHandler} color='gray-100' type='operation'>
-          +
-        </Key>
-        <Key resultHandler={resultHandler} color='white'>
-          <CalendarIcon />
-        </Key>
-        <Key resultHandler={resultHandler} color='white'>
-          0
-        </Key>
-        <Key resultHandler={resultHandler} color='white' type='decimal'>
-          .
-        </Key>
+        {keys.map((key, i) => (
+          <Key key={`key-${i}`} resultHandler={resultHandler} {...key.props}>
+            {key.children}
+          </Key>
+        ))}
         <Calendar>"Thursday March, 10, 2022"</Calendar>
       </Content>
     </CalculatorWrapper>
