@@ -11,4 +11,22 @@ export const KeyWrapper = styled.div`
   ${({ color }) => css`
     background-color: ${color};
   `}
+  ${({ row }) => {
+    if (row) {
+      return css`
+        grid-row: ${row[0]} / ${row[1]};
+        height: 100px;
+        > svg {
+          fill: transparent;
+        }
+      `;
+    }
+  }}
+  ${({ column }) => {
+    if (column) {
+      return css`
+        grid-column: ${column[0]} / ${column[1]};
+      `;
+    }
+  }}
 `;

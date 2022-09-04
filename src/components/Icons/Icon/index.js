@@ -7,7 +7,7 @@ export const Icon = ({ color, size, children }) => {
       color={color}
       width={size}
       height={size}
-      viewBox={`0 0 ${size} ${size}`}
+      viewBox={`0 -3 ${size} ${size}`}
     >
       {children}
     </StyledSvg>
