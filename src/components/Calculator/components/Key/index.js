@@ -1,14 +1,22 @@
 import PropTypes from 'prop-types';
 import { KeyWrapper } from './styles';
 
-export const Key = ({ children, color, row, column, resultHandler, type }) => {
+export const Key = ({
+  id,
+  children,
+  color,
+  row,
+  column,
+  resultHandler,
+  type,
+}) => {
   const keyHandler = (event) => {
-    if (type) return resultHandler(type);
     const value = event.target.textContent;
-    return resultHandler(value);
+    return resultHandler({ type, value });
   };
   return (
     <KeyWrapper
+      id={id}
       color={`var(--${color})`}
       row={row}
       column={column}
