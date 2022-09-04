@@ -1,5 +1,5 @@
 import './assets/styles.css';
-import { Header } from './components/Calculator/components/Header';
+import { Calculator } from './components/Calculator';
 import { AppContainer } from './containers';
 import { GlobalStyle } from './GlobalStyles';
 
@@ -7,7 +7,7 @@ function App() {
   return (
     <AppContainer>
       <GlobalStyle />
-      <Header title={'Groceries'} paragraph={'Add to'} />
+      <Calculator />
     </AppContainer>
   );
 }
