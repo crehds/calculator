@@ -47,7 +47,8 @@ const executeHandler = ({ value, resultHandler }) => {
 const operations = ({ operator, num1, num2 }) => {
   switch (operator) {
     case '÷':
-      return num1 / num2;
+      let result = num1 / num2;
+      return isFinite(result) ? result : 'Operación inválida';
     case 'x':
       return num1 * num2;
     case '-':
