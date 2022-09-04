@@ -95,16 +95,20 @@ export const Calculator = () => {
               displayValue: displayValue.slice(0, -1),
             });
           } else {
+            const aux = secondNum.slice(0, -1);
+            const temp = aux === ' ' ? '' : aux;
             return setData({
               ...data,
-              secondNum: secondNum.slice(0, -1),
+              secondNum: temp,
               displayValue: displayValue.slice(0, -1),
             });
           }
         }
+        const aux = firstNum.slice(0, -1);
+        const temp1 = aux === ' ' ? '' : aux;
         return setData({
           ...data,
-          firstNum: displayValue.slice(0, -1),
+          firstNum: temp1,
           displayValue: displayValue.slice(0, -1),
         });
       case 'operation':
@@ -139,6 +143,23 @@ export const Calculator = () => {
           secondNum: '',
           operator: '',
           waitForSecond: false,
+        });
+      case 'decimal':
+        if (waitForSecond) {
+          if (secondNum.includes('.')) return;
+          const temp = secondNum ? `.` : '0.';
+          return setData({
+            ...data,
+            secondNum: secondNum + temp,
+            displayValue: displayValue + temp,
+          });
+        }
+        if (firstNum.includes('.')) return;
+        const temp = firstNum ? `.` : '0.';
+        return setData({
+          ...data,
+          firstNum: firstNum + temp,
+          displayValue: displayValue + temp,
         });
       default:
         return setData(() => {
