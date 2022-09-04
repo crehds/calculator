@@ -1,4 +1,4 @@
-import './assets/styles.css';
+import './assets/css/styles.css';
 import { Calculator } from './components/Calculator';
 import { AppContainer } from './containers';
 import { GlobalStyle } from './GlobalStyles';
