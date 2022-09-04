@@ -74,10 +74,10 @@ export const Calculator = () => {
     switch (type) {
       case 'reset':
         return setData({
-          firstNum: null,
-          secondNum: null,
+          firstNum: '',
+          secondNum: '',
           waitForSecond: false,
-          operator: null,
+          operator: '',
           displayValue: ' ',
         });
       case 'back':
@@ -88,7 +88,6 @@ export const Calculator = () => {
           ...data,
           displayValue: data.displayValue.slice(0, -1),
         });
-
       case 'operation':
         if (data.waitForSecond) {
           const { firstNum, operator, secondNum } = data;
@@ -98,8 +97,9 @@ export const Calculator = () => {
           return setData({
             ...data,
             operator: value,
-            waitForSecond: false,
-            displayValue: ` ${result}`,
+            firstNum: `${result}`,
+            secondNum: '',
+            displayValue: ` ${result}${value}`,
           });
         }
         setExecuteButton('equal');
