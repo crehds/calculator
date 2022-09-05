@@ -150,16 +150,27 @@ export const Calculator = () => {
       default:
         return setData(() => {
           if (waitForSecond) {
+            const aux = secondNum === '0';
+            const temp = aux ? value : secondNum + value;
+            if (aux) {
+              return {
+                ...data,
+                displayValue: displayValue.slice(0, -1) + temp,
+                secondNum: temp,
+              };
+            }
             return {
               ...data,
               displayValue: displayValue + value,
-              secondNum: secondNum + value,
+              secondNum: temp,
             };
           } else {
+            const aux = firstNum === '0';
+            const temp = aux ? value : firstNum + value;
             return {
               ...data,
-              displayValue: displayValue + value,
-              firstNum: firstNum + value,
+              displayValue: temp,
+              firstNum: temp,
             };
           }
         });
