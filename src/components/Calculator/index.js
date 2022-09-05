@@ -181,7 +181,9 @@ export const Calculator = () => {
     <CalculatorWrapper>
       <Header paragraph={'Add to'} title={'Groceries'} />
       <Content>
-        <Result>{data.displayValue}</Result>
+        <Result>
+          {data.displayValue.split(/[+\-\x÷]/).join(' ' + data.operator + ' ')}
+        </Result>
         {keys.map((key, i) => (
           <Key key={`key-${i}`} resultHandler={resultHandler} {...key.props}>
             {key.children}
