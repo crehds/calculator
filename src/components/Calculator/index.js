@@ -79,6 +79,7 @@ export const Calculator = () => {
         });
       case 'operation':
         if (waitForSecond) {
+          if (!secondNum) return;
           const num1 = firstNum.includes('.')
             ? parseFloat(firstNum)
             : parseInt(firstNum);
@@ -103,6 +104,15 @@ export const Calculator = () => {
           displayValue: displayValue + value,
         });
       case 'execute':
+        if (!secondNum) {
+          setExecuteButton('check');
+          return setData({
+            ...data,
+            waitForSecond: false,
+            operator: '',
+            displayValue: firstNum,
+          });
+        }
         const num1 = firstNum.includes('.')
           ? parseFloat(firstNum)
           : parseInt(firstNum);
