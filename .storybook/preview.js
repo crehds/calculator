@@ -1,4 +1,5 @@
 import { themes } from '@storybook/theming';
+import '../src/assets/css/styles.css';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -16,4 +17,6 @@ export const parameters = {
     darkClass: 'lights-out',
     lightClass: 'lights-on',
   },
+  layout: 'centered',
+  margin: 0,
 };
